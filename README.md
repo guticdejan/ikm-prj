@@ -1,2 +1,2 @@
 # ikm-prj
-Projektni zadatak i predmeta Industrijske komunikacione mreže
+Projektni zadatak iz predmeta Industrijske komunikacione mreže
