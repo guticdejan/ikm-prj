@@ -139,9 +139,9 @@ CANopen NMT messages have highest priority and are sent from NMT master, canopen
 
 Observe CAN messages in candump. Second command does not work, because there is critical emergency which sets error register. Third command resets our devices, so go to their terminal windows and restart them.
 
-*Emergency* poruke, *error* registar i NMT predoperaciono stanje su posljedica neinicijalizovane *non-volatile* memorije. Objekti 0x1010 i 0x1011 koriste se za skladištenje i povratak podataka, uglavnom iz *CANopen Object Dictionary*.
+*Emergency* poruke, *error* registar i NMT predoperaciono stanje su posljedica neinicijalizovane *non-volatile* memorije. Objekti 0x1010 i 0x1011 koriste se za skladištenje i obnovu podataka, uglavnom iz *CANopen Object Dictionary*.
 
-Povratimo svu *non-volatile* memoriju na oba uređaja i resetujmo ih:
+Obnovimo svu *non-volatile* memoriju na oba uređaja i resetujmo ih:
 
     cocomm "1 w 0x1011 1 vs load"
     cocomm "4 w 0x1011 1 vs load"
