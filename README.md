@@ -54,6 +54,6 @@ Kopirati *canopend* i *cocomm* na ciljnu platformu.
 
 ## CAN interface
 
-Na ciljanoj platformi pokrenuti komandu:
+Na ciljnoj platformi pokrenuti komandu:
 
     sudo ip link set up can0 type can bitrate 250000
