@@ -51,3 +51,9 @@ Nakon čega prelazimo u direktorijum *cocomm*, otvaramo fajl *cocomm.c* i zakome
 Kao rezultat dobijamo binarne fajlove alata *canopend* i *cocomm*.
 
 Kopirati *canopend* i *cocomm* na ciljnu platformu.
+
+## CAN interface
+
+Na ciljanoj platformi pokrenuti komandu:
+
+    sudo ip link set up can0 type can bitrate 250000
