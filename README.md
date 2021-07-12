@@ -24,5 +24,5 @@ Nakon toga, prelazimo u folder u kojem se nalazi repozitorijum *can-utils* proje
   
 Kao rezultat, u okviru usr foldera dobijamo binarne fajlove alata koji su sastavni dio *can-utils* projekta.
 
-Kopirati candump iz foldera usr na ciljnu platformu.
+Kopirati **candump** iz foldera usr na ciljnu platformu.
 <p/>
