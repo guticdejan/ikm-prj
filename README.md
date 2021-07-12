@@ -26,3 +26,5 @@ Kao rezultat, u okviru `usr` foldera dobijamo binarne fajlove alata koji su sast
 
 Kopirati `candump` iz foldera `usr` na ciljnu platformu.
 <p/>
+
+## 
