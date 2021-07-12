@@ -2,7 +2,7 @@
 
 Projektni zadatak iz predmeta Industrijske komunikacione mreže
 
-## Preuzimanje i instalacija can-utils softverskog paketa
+## Preuzimanje i instalacija can-utils softverskog paketa (ovaj korak radimo u slučaju da nemamo candump)
 
 <p>
   Prvi korak je kloniranje izvornog koda projekta sa repozitorijuma. U tu svrhu, koristimo sljedeću komandu:
