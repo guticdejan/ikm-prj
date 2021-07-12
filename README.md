@@ -28,3 +28,11 @@ Kopirati `candump` iz foldera `usr` na ciljnu platformu.
 <p/>
 
 ## 
+
+Naredni korak je da kloniramo projekat i dobavimo podmodule
+    git clone https://github.com/CANopenNode/CANopenLinux.git
+    cd CANopenLinux
+    git submodule init
+    git submodule update
+
+    
