@@ -119,4 +119,40 @@ Sada postavimo parametar 0x1017 na 1000 milisekundi na oba uređaja:
     cocomm "1 write 0x1017 0 u16 1000"
     cocomm "4 write 0x1017 0 u16 1000"
 
+*candump* prikazuje:
+
+    can0  701   [1]  7F
+    can0  604   [8]  2B 17 10 00 E8 03 00 00
+    can0  584   [8]  60 17 10 00 00 00 00 00
+    can0  704   [1]  7F
+    can0  701   [1]  7F
+
+Sada imamo *heartbeat* poruke sa oba uređaja sa intervalom od jedne sekunde. 7F znači da je uređaj u NMT predoperacionom stanju.
+
+### *Network management* - NMT
+
+CANopen NMT messages have highest priority and are sent from NMT master, canopend in our case. They can be sent to specific node or all nodes. They can reset device, communication or set internal state of the remote device to operational, pre-operational(PDO disabled) or stopped(only heartbeat producer and NMT consumer enabled).
+
+    cocomm "4 reset communication"
+    cocomm "4 start"
+    cocomm "0 reset node"
+
+Observe CAN messages in candump. Second command does not work, because there is critical emergency which sets error register. Third command resets our devices, so go to their terminal windows and restart them.
+
+*Emergency* poruke, *error* registar i NMT predoperaciono stanje su posljedica neinicijalizovane *non-volatile* memorije. Objekti 0x1010 i 0x1011 koriste se za skladištenje i povratak podataka, uglavnom iz *CANopen Object Dictionary*.
+
+Povratimo svu *non-volatile* memoriju na oba uređaja i resetujmo ih:
+
+    cocomm "1 w 0x1011 1 vs load"
+    cocomm "4 w 0x1011 1 vs load"
+    cocomm "0 reset node"
+    # re-run devices in their terminals
+    
+*candump* je sada bez *emergency* poruka i imamo dvije dodate PDO poruke, jer su uređaji sada u NMT operacionom stanju. *Heratbeat* poruke se nestale:
+
+    can0  701   [1]  00
+    can0  704   [1]  00
+    can0  184   [2]  00 00
+    can0  284   [8]  00 00 00 00 00 00 00 00
+
 
