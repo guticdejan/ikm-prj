@@ -41,4 +41,12 @@ Naredni korak je da kloniramo projekat i preuzmemo podmodule
 Sljedeći korak je da kroskompajliramo za Raspberry Pi platformu pozivanjem komande:
 
     make CC="arm-linux-gnueabihf-gcc -std=gnu11"
-    
+
+<< Dobili smo canopend
+Potom prelazimo u direktorijum *cocomm*, otvaramo fajl *cocomm.c* i zakomentarišemo liniju koda `#include getopt_core`, te potom kroskompajliramo za Raspberry Pi platformu
+
+    cd cocomm
+    gedit cocomm.c
+    make CC="arm-linux-gnueabihf-gcc -std=gnu11"
+
+
