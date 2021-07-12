@@ -2,6 +2,13 @@
 
 Projektni zadatak iz predmeta Industrijske komunikacione mreže
 
+## Priprema za vježbu
+
+<p>
+Očekuje se da je student upoznat (kroz prezentacije na predavanjima i konsultovanje dostupne literature) sa osnovnim pravilima komunikacije CANOpen protokola.
+
+Prije početka vježbe, student treba da ažurira stanje lokalnog repozitorijuma izvršavanjem git pull komande u okviru ~/ikm-labs/ direktorijuma. Ako repozitorijum nije ranije preuzet, potrebno ga je klonirati u lokalnom home direktorijumu korišćenjem naredbe git clone https://github.com/knezicm/ikm-labs. Nakon što je repozitorijum ažuriran/kloniran, potrebno je kopirati folder lab8 sa cijelim njegovim sadržajem u home direktorijum trenutnog korisnika.
+
 ## Preuzimanje i instalacija can-utils softverskog paketa (ovaj korak radimo u slučaju da nemamo candump)
 
 <p>
@@ -41,12 +48,15 @@ Naredni korak je da kloniramo projekat i preuzmemo podmodule.
 Sljedeći korak je da kroskompajliramo alatku *canopend* za Raspberry Pi platformu pozivanjem komande:
 
     make CC="arm-linux-gnueabihf-gcc -std=gnu11"
+    cd CANopenLinux
+    make
 
 Nakon čega prelazimo u direktorijum *cocomm*, otvaramo fajl *cocomm.c* i zakomentarišemo liniju koda `#include getopt_core`, te potom kroskompajliramo alatku *cocomm* za Raspberry Pi platformu.
 
     cd cocomm
-    gedit cocomm.c
-    make CC="arm-linux-gnueabihf-gcc -std=gnu11"
+    //gedit cocomm.c
+    //make CC="arm-linux-gnueabihf-gcc -std=gnu11"
+    make
 
 Kao rezultat dobijamo binarne fajlove alata *canopend* i *cocomm*.
 
@@ -54,9 +64,11 @@ Kopirati *canopend* i *cocomm* na ciljnu platformu.
 
 ## CAN interface
 
-Na ciljnoj platformi pokrenemo komandu:
+Sljedeći korak podrazumijeva aktiviranje CAN interefejsa. Ovo se postiže istim komandama kao kada se radi sa klasičnim mrežnim interfejsima.
 
-    sudo ip link set up can0 type can bitrate 250000
+    sudo ip link set up can0 type can bitrate 250000  # enable interface
+    ip link show dev can0						    	            # print info
+    sudo ip link set can0 down      					        # disable interface
     
 ## Pokretanj CANopenLinux uređaja
 
