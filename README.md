@@ -29,11 +29,16 @@ Kopirati `candump` iz foldera `usr` na ciljnu platformu.
 
 ## Preuzimanje *CANopenLinux* projekta
 
-Naredni korak je da kloniramo projekat i dobavimo podmodule
+Naredni korak je da kloniramo projekat i preuzmemo podmodule
 
     git clone https://github.com/CANopenNode/CANopenLinux.git
     cd CANopenLinux
     git submodule init
     git submodule update
+    
+## Kroskompajliranje za Raspberry Pi platformu
 
+Sljedeći korak je da kroskompajliramo za Raspberry Pi platformu pozivanjem komande:
+
+    make CC="arm-linux-gnueabihf-gcc -std=gnu11"
     
