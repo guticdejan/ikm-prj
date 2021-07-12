@@ -38,11 +38,11 @@ Naredni korak je da kloniramo projekat i preuzmemo podmodule
     
 ## Kroskompajliranje za Raspberry Pi platformu
 
-Sljedeći korak je da kroskompajliramo za Raspberry Pi platformu pozivanjem komande:
+Sljedeći korak je da kroskompajliramo alatku *canopend* za Raspberry Pi platformu pozivanjem komande:
 
     make CC="arm-linux-gnueabihf-gcc -std=gnu11"
 
-Nakon čega prelazimo u direktorijum *cocomm*, otvaramo fajl *cocomm.c* i zakomentarišemo liniju koda `#include getopt_core`, te potom kroskompajliramo za Raspberry Pi platformu
+Nakon čega prelazimo u direktorijum *cocomm*, otvaramo fajl *cocomm.c* i zakomentarišemo liniju koda `#include getopt_core`, te potom kroskompajliramo alatku *cocomm* za Raspberry Pi platformu
 
     cd cocomm
     gedit cocomm.c
