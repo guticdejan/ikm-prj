@@ -57,3 +57,9 @@ Kopirati *canopend* i *cocomm* na ciljnu platformu.
 Na ciljnoj platformi pokrenuti komandu:
 
     sudo ip link set up can0 type can bitrate 250000
+    
+## Pokretanj CANopenLinux uređaja
+
+Za izvođenje ove vježbe potrebno je otvoriti 4 terminala.
+
+### Prvi terminal
