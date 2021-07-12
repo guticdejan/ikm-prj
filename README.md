@@ -97,7 +97,7 @@ Ukoliko *cocomm* ispravno radi primićemo `help` string.
     can0  704   [1]  00                       # Boot-up message from demoDevice
     can0  084   [8]  00 50 01 2F 74 00 00 00  # Emergency from demoDevice
    
-Ništa nije konfigurisano, te nemamo više poruka. // ovdje treba objasniti malo
+Ništa nije konfigurisano, te nemamo više poruka. // ovdje treba objasniti malo sta znace poruke
 
 ### Osnovna SDO komunikacija
 
