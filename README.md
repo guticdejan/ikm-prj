@@ -7,7 +7,7 @@ Projektni zadatak iz predmeta Industrijske komunikacione mreže
 <p>
   Prvi korak je kloniranje izvornog koda projekta sa repozitorijuma. U tu svrhu, koristimo sljedeću komandu:
 
->git clone --depth=1 https://github.com/linux-can/can-utils.git
+  git clone --depth=1 https://github.com/linux-can/can-utils.git
   
 Prethodnu komandu treba izvršiti u okviru radnog direktorijuma laboratorijske vježbe (lab7).
 
