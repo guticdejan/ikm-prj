@@ -148,7 +148,7 @@ Povratimo svu *non-volatile* memoriju na oba uređaja i resetujmo ih:
     cocomm "0 reset node"
     # re-run devices in their terminals
     
-*candump* je sada bez *emergency* poruka i imamo dvije dodate PDO poruke, jer su uređaji sada u NMT operacionom stanju. *Heratbeat* poruke se nestale:
+*candump* je sada bez *emergency* poruka i imamo dvije dodate PDO poruke, jer su uređaji sada u NMT operacionom stanju. *Heratbeat* poruke su nestale:
 
     can0  701   [1]  00
     can0  704   [1]  00
