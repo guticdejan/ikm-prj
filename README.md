@@ -48,4 +48,6 @@ Nakon čega prelazimo u direktorijum *cocomm*, otvaramo fajl *cocomm.c* i zakome
     gedit cocomm.c
     make CC="arm-linux-gnueabihf-gcc -std=gnu11"
 
+Kao rezultat dobijamo binarne fajlove alata *canopend* i *cocomm*.
 
+Kopirati *canopend* i *cocomm* na ciljnu platformu.
