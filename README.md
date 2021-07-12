@@ -63,3 +63,9 @@ Na ciljnoj platformi pokrenuti komandu:
 Za izvođenje ove vježbe potrebno je otvoriti 4 terminala.
 
 ### Prvi terminal
+
+Komandom `ssh` povežemo se na Rasberry uređaj sa IP adresom 192.168.23.206 i pokrenemo alatku *candump*
+
+    ./candump can0
+    
+
