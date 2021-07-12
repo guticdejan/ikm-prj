@@ -79,3 +79,10 @@ Komandom `ssh` povežemo se na *Rasberry Pi* platformu sa IP adresom 192.168.23.
 Komandom `ssh` povežemo se na *Rasberry Pi* platformu sa IP adresom 192.168.23.212 i pokrenemo kontrolni *CANopen Linux* uređaj na lokalnom soketu koristeći komandu:
 
     ./canopend can0 -i 1 -c "local-/tmp/CO_command_socket"
+
+### Četvrti terminal
+
+Komandom `ssh` povežemo se na *Rasberry Pi* platformu sa IP adresom 192.168.23.212 i provjerimo da li nam alat *cocomm* radi ispravno pokretanjem komade:
+
+    ./cocomm "help"
+    
