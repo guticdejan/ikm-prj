@@ -9,10 +9,47 @@ Očekuje se da je student upoznat (kroz prezentacije na predavanjima i konsultov
 
 Prije početka vježbe, student treba da ažurira stanje lokalnog repozitorijuma izvršavanjem git pull komande u okviru ~/ikm-labs/ direktorijuma. Ako repozitorijum nije ranije preuzet, potrebno ga je klonirati u lokalnom home direktorijumu korišćenjem naredbe git clone https://github.com/knezicm/ikm-labs. Nakon što je repozitorijum ažuriran/kloniran, potrebno je kopirati folder lab8 sa cijelim njegovim sadržajem u home direktorijum trenutnog korisnika.
 
+
+## Preuzimanje *CANopenLinux* projekta
+
+Naredni korak je da kloniramo projekat sa git repozitorijuma i preuzmemo podmodule.
+
+    git clone https://github.com/CANopenNode/CANopenLinux.git
+    cd CANopenLinux
+    git submodule init
+    git submodule update
+    
+## Kroskompajliranje za Raspberry Pi platformu
+
+Sljedeći korak je da kroskompajliramo alatku *canopend* za Raspberry Pi platformu pozivanjem komande:
+
+    make CC="arm-linux-gnueabihf-gcc -std=gnu11"
+    cd CANopenLinux
+    make
+
+Nakon čega prelazimo u direktorijum *cocomm* te potom kroskompajliramo alatku *cocomm* za Raspberry Pi platformu.
+
+    cd cocomm
+    make
+
+Kao rezultat dobijamo binarne fajlove alata *canopend* i *cocomm*.
+
+Kopirati *canopend* i *cocomm* na ciljnu platformu.
+  
+  
+## CAN interface
+
+Sljedeći korak podrazumijeva aktiviranje CAN interefejsa. Ovo se postiže istim komandama kao kada se radi sa klasičnim mrežnim interfejsima.
+
+    sudo ip link set up can0 type can bitrate 250000  # enable interface
+    ip link show dev can0						    	            # print info
+    sudo ip link set can0 down      					        # disable interface
+  
+  
 ## Preuzimanje i instalacija can-utils softverskog paketa (ovaj korak radimo u slučaju da nemamo candump)
 
 <p>
-  Prvi korak je kloniranje izvornog koda projekta sa repozitorijuma. U tu svrhu, koristimo sljedeću komandu:
+  Potrebno je kloniranje izvornog koda projekta sa repozitorijuma. U tu svrhu, koristimo sljedeću komandu:
 
     git clone --depth=1 https://github.com/linux-can/can-utils.git
   
@@ -32,73 +69,9 @@ Nakon toga, prelazimo u folder u kojem se nalazi repozitorijum *can-utils* proje
 Kao rezultat, u okviru `usr` foldera dobijamo binarne fajlove alata koji su sastavni dio *can-utils* projekta.
 
 Kopirati `candump` iz foldera `usr` na ciljnu platformu.
-<p/>
+<p/>  
 
-## Preuzimanje *CANopenLinux* projekta
-
-Naredni korak je da kloniramo projekat i preuzmemo podmodule.
-
-    git clone https://github.com/CANopenNode/CANopenLinux.git
-    cd CANopenLinux
-    git submodule init
-    git submodule update
     
-## Kroskompajliranje za Raspberry Pi platformu
-
-Sljedeći korak je da kroskompajliramo alatku *canopend* za Raspberry Pi platformu pozivanjem komande:
-
-    make CC="arm-linux-gnueabihf-gcc -std=gnu11"
-    cd CANopenLinux
-    make
-
-Nakon čega prelazimo u direktorijum *cocomm*, otvaramo fajl *cocomm.c* i zakomentarišemo liniju koda `#include getopt_core`, te potom kroskompajliramo alatku *cocomm* za Raspberry Pi platformu.
-
-    cd cocomm
-    //gedit cocomm.c
-    //make CC="arm-linux-gnueabihf-gcc -std=gnu11"
-    make
-
-Kao rezultat dobijamo binarne fajlove alata *canopend* i *cocomm*.
-
-Kopirati *canopend* i *cocomm* na ciljnu platformu.
-
-## CAN interface
-
-Sljedeći korak podrazumijeva aktiviranje CAN interefejsa. Ovo se postiže istim komandama kao kada se radi sa klasičnim mrežnim interfejsima.
-
-    sudo ip link set up can0 type can bitrate 250000  # enable interface
-    ip link show dev can0						    	            # print info
-    sudo ip link set can0 down      					        # disable interface
-    
-## Pokretanj CANopenLinux uređaja
-
-Za izvođenje ove vježbe potrebno je otvoriti 4 terminala.
-
-### Prvi terminal
-
-Komandom `ssh` povežemo se na *Rasberry Pi* platformu sa IP adresom 192.168.23.206 i pokrenemo alatku *candump*:
-
-    ./candump can0
-
-### Drugi terminal
-
-Komandom `ssh` povežemo se na *Rasberry Pi* platformu sa IP adresom 192.168.23.206 i pokrenemo `can0` uređaj sa `CANopen NodeID = 4:
-
-    ./canopned can0 -i 4
-    
-### Treći terminal
-
-Komandom `ssh` povežemo se na *Rasberry Pi* platformu sa IP adresom 192.168.23.212 i pokrenemo kontrolni *CANopen Linux* uređaj na lokalnom soketu koristeći komandu:
-
-    ./canopend can0 -i 1 -c "local-/tmp/CO_command_socket"
-
-### Četvrti terminal
-
-Komandom `ssh` povežemo se na *Rasberry Pi* platformu sa IP adresom 192.168.23.212 i provjerimo da li nam alat *cocomm* radi ispravno pokretanjem komade:
-
-    ./cocomm "help"
-    
-Ukoliko *cocomm* ispravno radi primićemo `help` string.
 
 ### Prvi koraci
 
