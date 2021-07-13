@@ -77,10 +77,8 @@ This is an example, devices may also be started different way.
 U prvom terminalu potrebno je da pokrenemo alatku candump na prvoj ciljnoj platformi, u zavisnosti od folderu(u našem slučaju to je lab8) na ciljnoj platformi u koji smo kopirali candump alatku: 
 
 cd lab8
-
-./candump --help
-
-./candump -td -a can0
+candump --help
+candump -td -a can0
 
 Više informacija za ovu alatke možemo vidjeti komandom candump --help
 
@@ -89,8 +87,8 @@ Više informacija za ovu alatke možemo vidjeti komandom candump --help
 U drugom termina pokrećemo alatku canopend na drugoj ciljnoj platformi u sačuvanom folderu na ciljnoj platformi:
 
 cd lab8
-./canopend --help
-./canopend can0 -i 4
+canopend --help
+canopend can0 -i 4
 
 
 
@@ -104,16 +102,14 @@ Na terminalu gdje je pokrenuta alatka *candump* trebali bi dobiti iduću poruku:
 Boot-up poruka nam sadrži 11-bitni CAN ID koji predstavlja Hearbeat poruku: 0x700 + CANopen Node-ID.
 Poruka 0x080 je SYNC poruka, poruka 0x080 + Node ID je EMCY(Emergency message).
 
-Ništa nije konfigurisano, te nemamo više poruka. // ovdje treba objasniti malo sta znace poruke
+Ništa nije konfigurisano, te nemamo više poruka. 
 
 ### Emergency messages
-Vidimo da nam uredjaj šalje Emergency message boot-up. Sadržaj ove poruke je:
+Vidimo da nam uredjaj šalje Emergency message nako izvršenog boot-up. Sadržaj ove poruke je:
 
 bajtovi 0..1: u našem slučaju 0x5000 (Device Hardware) (nam označava da je CANopen little endian format-struktura(popravi)).
 bajt 2: u našem slučaju 0x01 (generički eror).
-bajt 3: u našem slučaju 0x2F (CO_EM_NON_VOLATILE_MEMORY) nam predstavlja grešku pristapu stalnoj memoriji(non-volatile memory).
-
-CO_EM_NON_VOLATILE_MEMORY is generic, critical error, which by default sets the CANopen Error Register. If error register is different than zero, then node may be prohibited to enter NMT operational state and PDOs can not be exchanged with it.
+bajt 3: u našem slučaju 0x2F (CO_EM_NON_VOLATILE_MEMORY) nam predstavlja grešku pristupa stalnoj memoriji(non-volatile memory).
 
 ### Osnovna SDO komunikacija
 
@@ -143,17 +139,18 @@ Sada postavimo parametar 0x1017 na 1000 milisekundi na oba uređaja:
     can0  704   [1]  7F
     can0  701   [1]  7F
 
-Sada imamo *heartbeat* poruke sa oba uređaja sa intervalom od jedne sekunde. 7F znači da je uređaj u NMT predoperacionom stanju.
+Sada imamo *heartbeat* poruke sa oba uređaja sa intervalom od jedne sekunde. 7F znači da je uređaj u predoperacionom stanju.
 
 ### *Network management* - NMT
 
-CANopen NMT messages have highest priority and are sent from NMT master, canopend in our case. They can be sent to specific node or all nodes. They can reset device, communication or set internal state of the remote device to operational, pre-operational(PDO disabled) or stopped(only heartbeat producer and NMT consumer enabled).
+CANopen NMT poruke imaju največi priorite i u našem slučaju poslane se od strane canopen mastera. Ove poruke mogu biti poslane odredjenom čvoru ili svim čvorovima.
+One mogu resetovati uredjaj, komunikaciju ili setovati stanje u kojem će se dati uredjaj nalaziti, pa tako imamo operaciono, pre-operaciono(u kojima je razmjena procesnih podataka onemogućena) ili stop stanje. 
 
     cocomm "4 reset communication"
     cocomm "4 start"
     cocomm "0 reset node"
 
-Observe CAN messages in candump. Second command does not work, because there is critical emergency which sets error register. Third command resets our devices, so go to their terminal windows and restart them.
+CAN poruke posmatramo na terminalu gdje je pokrenut candump. Druga komanda(cocomm "4 start") neće raditi jer postoji EMCY poruka koja setuje error registar, da bi setovali uredjaje u operaciono stanje potrebno je riješiti ove greške. Treća komanda resetuje uredjaje, nakon toga potrebno ih je u terminalu opet pokrenuti.
 
 *Emergency* poruke, *error* registar i NMT predoperaciono stanje su posljedica neinicializovane *non-volatile* memorije. Objekti 0x1010 i 0x1011 koriste se za skladištenje i obnovu podataka, uglavnom iz *CANopen Object Dictionary*.
 
@@ -164,7 +161,7 @@ Obnovimo svu *non-volatile* memoriju na oba uređaja i resetujmo ih:
     cocomm "0 reset node"
     # re-run devices in their terminals
     
-*candump* je sada bez *emergency* poruka i imamo dvije dodate PDO poruke, jer su uređaji sada u NMT operacionom stanju. *Heratbeat* poruke su nestale:
+*candump* je sada bez *emergency* poruka i imamo dvije dodate PDO poruke, jer su uređaji sada u operacionom stanju. *Heratbeat* poruke su nestale:
 
     can0  701   [1]  00
     can0  704   [1]  00
