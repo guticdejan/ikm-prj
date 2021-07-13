@@ -22,15 +22,14 @@ Naredni korak je da kloniramo projekat sa git repozitorijuma i preuzmemo podmodu
 ## Kroskompajliranje za Raspberry Pi platformu
 
 Sljedeći korak je da kroskompajliramo alatku *canopend* za Raspberry Pi platformu pozivanjem komande:
-
-    make CC="arm-linux-gnueabihf-gcc -std=gnu11"
+    
     cd CANopenLinux
-    make
+    make CC="arm-linux-gnueabihf-gcc -std=gnu11"
 
 Nakon čega prelazimo u direktorijum *cocomm* te potom kroskompajliramo alatku *cocomm* za Raspberry Pi platformu.
 
     cd cocomm
-    make
+    make CC="arm-linux-gnueabihf-gcc -std=gnu11"
 
 Kao rezultat dobijamo binarne fajlove alata *canopend* i *cocomm*.
 
@@ -77,7 +76,7 @@ This is an example, devices may also be started different way.
 
 #### candump
 
-U prvom terminalu potrebno je da pokrenemo alatku candump na prvoj razvojnoj platformi, u zavisnosti od folderu(u našem slučaju to je lab8) na razvojnoj platformi u koji smo kopirali candump alatku: 
+U prvom terminalu potrebno je da pokrenemo alatku candump na prvoj ciljnoj platformi, u zavisnosti od folderu(u našem slučaju to je lab8) na ciljnoj platformi u koji smo kopirali candump alatku: 
 
 cd lab8
 ./candump --help
@@ -87,7 +86,7 @@ Više informacija za ovu alatke možemo vidjeti komandom candump --help
 
 #### canopend
 
-U drugom termina pokrećemo alatku canopend na drugoj razvojnoj platformi u sačuvanom folderu na razvojnoj platformi:
+U drugom termina pokrećemo alatku canopend na drugoj ciljnoj platformi u sačuvanom folderu na ciljnoj platformi:
 
 cd lab8
 ./canopend --help
@@ -102,20 +101,17 @@ Na terminalu gdje je pokrenuta alatka *candump* trebali bi dobiti iduću poruku:
     can0  704   [1]  00                       # Boot-up message from demoDevice
     can0  084   [8]  00 50 01 2F 74 00 00 00  # Emergency from demoDevice
 
-Second column is 11-bit standard CAN identifier. See #CO_Default_CAN_ID_t for information, how it is used in CANopen. 
-Bootup message has the same 11-bit CAN ID as Heartbeat: 0x700 + CANopen Node-ID.
+Boot-up poruka nam sadrži 11-bitni CAN ID koji predstavlja Hearbeat poruku: 0x700 + CANopen Node-ID.
+Poruka 0x080 je SYNC poruka, poruka 0x080 + Node ID je EMCY(Emergency message).
 
-There are no more messages from CANopen devices, because nothing is configured.
 Ništa nije konfigurisano, te nemamo više poruka. // ovdje treba objasniti malo sta znace poruke
 
 ### Emergency messages
-Both devices sends Emergency message after the boot-up. Contents of emergency message is:
+Vidimo da nam uredjaj šalje Emergency message boot-up. Sadržaj ove poruke je:
 
-bytes 0..1: #CO_EM_errorCode_t, in our case 0x5000 (Device Hardware) (mind that CANopen is little endian).
-byte 2: #CO_errorRegister_t, in our case 0x01 (generic error).
-byte 3: Index of error condition from #CO_EM_errorStatusBits_t, in our case 0x2F (CO_EM_NON_VOLATILE_MEMORY - Error with access to non volatile device memory).
-bytes 4..7: Additional informative argument, in our case 0x00000014 or 0x00000074.
-Emergency messages are triggered internally by #CO_errorReport() function. You may seek inside source code for CO_EM_NON_VOLATILE_MEMORY to find source of the emergency message.
+bajtovi 0..1: u našem slučaju 0x5000 (Device Hardware) (nam označava da je CANopen little endian format-struktura(popravi)).
+bajt 2: u našem slučaju 0x01 (generički eror).
+bajt 3: u našem slučaju 0x2F (CO_EM_NON_VOLATILE_MEMORY) nam predstavlja grešku pristapu stalnoj memoriji(non-volatile memory).
 
 CO_EM_NON_VOLATILE_MEMORY is generic, critical error, which by default sets the CANopen Error Register. If error register is different than zero, then node may be prohibited to enter NMT operational state and PDOs can not be exchanged with it.
 
