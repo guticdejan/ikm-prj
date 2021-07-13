@@ -66,7 +66,7 @@ Kopirati `candump` iz foldera `usr` na ciljnu platformu.
 Sljedeći korak podrazumijeva aktiviranje CAN interefejsa. Ovo se postiže istim komandama kao kada se radi sa klasičnim mrežnim interfejsima.
 
     sudo ip link set up can0 type can bitrate 250000  # enable interface
-    ip link show dev can0			            # print info
+    ip link show dev can0			           # print info
     sudo ip link set can0 down                        # disable interface
 
 ### Start devices
