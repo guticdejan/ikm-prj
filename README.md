@@ -54,7 +54,7 @@ Nakon toga, prelazimo u folder u kojem se nalazi repozitorijum *can-utils* proje
     ./autogen.sh
     ./configure --prefix=/path/to/usr --host=arm-linux-gnueabihf
     make
-    make install
+    sudo make install
   
 Kao rezultat, u okviru `usr` foldera dobijamo binarne fajlove alata koji su sastavni dio *can-utils* projekta.
 
