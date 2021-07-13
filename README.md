@@ -77,7 +77,9 @@ This is an example, devices may also be started different way.
 U prvom terminalu potrebno je da pokrenemo alatku candump na prvoj ciljnoj platformi, u zavisnosti od folderu(u našem slučaju to je lab8) na ciljnoj platformi u koji smo kopirali candump alatku: 
 
 cd lab8
+
 ./candump --help
+
 ./candump -td -a can0
 
 Više informacija za ovu alatke možemo vidjeti komandom candump --help
