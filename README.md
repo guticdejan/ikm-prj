@@ -34,16 +34,7 @@ Nakon čega prelazimo u direktorijum *cocomm* te potom kroskompajliramo alatku *
 Kao rezultat dobijamo binarne fajlove alata *canopend* i *cocomm*.
 
 Kopirati *canopend* i *cocomm* na ciljnu platformu.
-  
-  
-## CAN interface
-
-Sljedeći korak podrazumijeva aktiviranje CAN interefejsa. Ovo se postiže istim komandama kao kada se radi sa klasičnim mrežnim interfejsima.
-
-    sudo ip link set up can0 type can bitrate 250000  # enable interface
-    ip link show dev can0						    	            # print info
-    sudo ip link set can0 down      					        # disable interface
-  
+   
   
 ## Preuzimanje i instalacija can-utils softverskog paketa (ovaj korak radimo u slučaju da nemamo candump)
 
@@ -70,6 +61,13 @@ Kao rezultat, u okviru `usr` foldera dobijamo binarne fajlove alata koji su sast
 Kopirati `candump` iz foldera `usr` na ciljnu platformu.
 <p/>  
 
+## CAN interface
+
+Sljedeći korak podrazumijeva aktiviranje CAN interefejsa. Ovo se postiže istim komandama kao kada se radi sa klasičnim mrežnim interfejsima.
+
+    sudo ip link set up can0 type can bitrate 250000  # enable interface
+    ip link show dev can0						      # print info
+    sudo ip link set can0 down      				  # disable interface
 
 ### Start devices
 This is an example, devices may also be started different way.
