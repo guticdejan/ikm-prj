@@ -76,9 +76,9 @@ This is an example, devices may also be started different way.
 
 U prvom terminalu potrebno je da pokrenemo alatku candump na prvoj ciljnoj platformi, u zavisnosti od folderu(u našem slučaju to je lab8) na ciljnoj platformi u koji smo kopirali candump alatku: 
 
-cd lab8
-candump --help 
-candump -td -a can0
+    cd lab8
+    candump --help 
+    candump -td -a can0
 
 Više informacija za ovu alatke možemo vidjeti komandom candump --help
 
@@ -86,9 +86,9 @@ Više informacija za ovu alatke možemo vidjeti komandom candump --help
 
 U drugom termina pokrećemo alatku canopend na drugoj ciljnoj platformi u sačuvanom folderu na ciljnoj platformi:
 
-cd lab8 
-canopend --help 
-canopend can0 -i 4
+    cd lab8 
+    canopend --help 
+    canopend can0 -i 4
 
 
 Na terminalu gdje je pokrenuta alatka *candump* trebali bi dobiti iduću poruku:
