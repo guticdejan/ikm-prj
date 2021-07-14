@@ -14,7 +14,7 @@ Prije početka vježbe, student treba da ažurira stanje lokalnog repozitorijuma
 
 Naredni korak je da kloniramo projekat sa git repozitorijuma i preuzmemo podmodule.
 
-    git clone https://github.com/CANopenNode/CANopenLinux.git
+    git clone --depth=1 https://github.com/CANopenNode/CANopenLinux.git
     cd CANopenLinux
     git submodule init
     git submodule update
