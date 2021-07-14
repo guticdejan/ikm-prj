@@ -70,7 +70,7 @@ Sljedeći korak podrazumijeva aktiviranje CAN interefejsa. Ovo se postiže istim
     sudo ip link set can0 down                        # disable interface
 
 ### Start devices
-This is an example, devices may also be started different way.
+Primjer pokretanja uredjaja.
 
 #### candump
 
@@ -167,9 +167,5 @@ Obnovimo svu *non-volatile* memoriju na oba uređaja i resetujmo ih:
     can0  184   [2]  00 00
     can0  284   [8]  00 00 00 00 00 00 00 00
 
-Object Dictionary
------------------
-Object Dictionary is central part of CANopen device. It contains well structured communication, manufacturer specific or standardized device profile parameters, accessible by different types of communication. See picture below or complete OD documentation in [demoDevice.md](demoDevice.md). Note also project file `demoDevice.xdd`, which can be opened and edited with EDSEditor.exe (Linux or Windows application). EDSEditor can export other files, including OD.h and OD.c source files for this example. `demoDevice.xdd` and `demoDevice.eds` are standard CANopen device description files and can be opened also with other CANopen tools.
 
-![EDSEditor](demoDevice.png)
 
