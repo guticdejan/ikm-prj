@@ -169,3 +169,12 @@ Obnovimo svu *non-volatile* memoriju na oba uređaja i resetujmo ih:
 
 
 
+### Sledeći koraci
+----------
+Ovdje imamo detaljno opisane dodatne postupke SDO i PDO razmjene poruka, korisno nam je dodatno upoznati se sa ovim postupcima: 
+
+ - [tutorial/LSS.md](LSS.md) - Dodjeljivanje Node-ID ili CAN bitrate uredjajima.
+ - [tutorial/SDO.md](SDO.md) 
+ - [tutorial/PDO.md](PDO.md) - Demonstracija PDO
+
+
