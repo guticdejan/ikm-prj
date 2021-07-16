@@ -170,7 +170,12 @@ Obnovimo svu *non-volatile* memoriju na oba uređaja i resetujmo ih:
 
 Object Dictionary
 -----------------
-Object Dictionary is central part of CANopen device. It contains well structured communication, manufacturer specific or standardized device profile parameters, accessible by different types of communication. See picture below or complete OD documentation in [demoDevice.md](demoDevice.md). Note also project file `demoDevice.xdd`, which can be opened and edited with EDSEditor.exe (Linux or Windows application). EDSEditor can export other files, including OD.h and OD.c source files for this example. `demoDevice.xdd` and `demoDevice.eds` are standard CANopen device description files and can be opened also with other CANopen tools.
+
+Rječnik objekata je centralni deo CANopen uređaja. Sadrži dobro strukturiranu komunikaciju, specifične za proizvođača ili standardizovane parametre profila uređaja, dostupne različitim vrstama komunikacije. 
+Središnji pojam CANopen-a je rječnik objekata (eng. object dictionary, OD). On se može shvatiti kao tablica u kojoj se pohranjuju konfiguracijski i procesni podaci. Standard definira mogućih 216 ili 65536 adresa i 28 ili 256 podadresa. Neki su indeksi u rječniku obavezni, kao npr. tip uređaja (indeks 1000). Pomoću rječnika objekata se ustvari može komunicirati s nekim podređenim uređajem odnosno postoji mogućnost pristupanja parametrima nekog uređaja. Također je moguće da nadređeni uređaj želi pročitati podatak iz rječnika objekta ili saznati kako je uređaj trenutno konfiguriran. Za pristup rječniku se koriste dva mehanizma:
+SDO (eng. Service Data Objects) i PDO (eng. Process Data Objects).
+
+EDS editor možemo pronaći na ovom linku [EDSEditor](https://github.com/robincornelius/libedssharp), medjutim ova aplikacija nije kompatibilna sa posljednjom verzijom CANopennode samog koda, samim tim nećemo ga koristiti u ovom labu.
 
 ![EDSEditor](https://raw.githubusercontent.com/CANopenNode/CANopenDemo/master/demo/demoDevice.png)
 
